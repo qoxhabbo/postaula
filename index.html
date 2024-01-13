@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <script src="https://kit.fontawesome.com/b9b1dab4ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>[OM] Postagem de Aulas</title>
+    <link rel="icon"
+        href="https://www.habbo.com.br/habbo-imaging/badge/b09134s43114s41194f74f3131b8a5c9311558ee0f561db7e0.gif">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            background: url('https://i.imgur.com/IufTVTQ.jpg') center center fixed;
+            background-size: cover;
+            animation: gradientAnimation 15s ease infinite, pulse 2s infinite;
+            position: relative;
         }
 
         form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
             width: 100%;
+            margin: 190px 485px 0; /* Ajuste o valor da margem superior e esquerda conforme necessário */
+            display: flex;
+            flex-wrap: wrap;
         }
 
         label {
+            flex: 1;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
         }
 
         input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
+            width: calc(100% - 20px);
+            padding: 18px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
@@ -43,38 +53,112 @@
         button {
             background-color: #4caf50;
             color: #fff;
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
 
         button:hover {
             background-color: #45a049;
         }
+
+        #envio_hora_data {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        .confirmacao {
+        display: none;
+        background-color: #fff; /* Alterado para uma cor sólida sem transparência */
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin: 40px auto 60px; /* Ajustei a margem */
+        text-align: center; /* Centralizei o conteúdo */
+    }
+
+    .confirmacao h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .confirmacao div {
+        margin-bottom: 15px;
+    }
+
+    .confirmacao button {
+        background-color: #192a1a;
+        color: #fff;
+        padding: 8px; /* Ajuste o valor conforme necessário */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px; /* Ajuste o valor conforme necessário */
+    }
+
+    .confirmacao button:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .confirmacao button:hover {
+        background-color: #45a049;
+    }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #424950;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .card-footer {
+            background-color: #343a40;
+            border-top: 1px solid #dee2e6;
+            padding: 0.75rem 1.25rem;
+            margin-top: 15px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
     </style>
 </head>
+
 <body>
 
+    <div class="footer">
+        <div>Todos os direitos reservados à subcompanhia da Ordem Militar.</div>
+        <div> </div> Desenvolvido por Qox ©</div>
+    </div>
+
     <form id="myForm">
-        <label for="nicknameAlunos">Nickname dos Alunos:</label>
-        <input type="text" id="nicknameAlunos" name="nicknameAlunos" required>
-
-        <label for="nicknameAprovados">Nickname dos Aprovados:</label>
-        <input type="text" id="nicknameAprovados" name="nicknameAprovados" required>
-
-        <label for="comentarios">Comentários:</label>
-        <input type="text" id="comentarios" name="comentarios">
-
-        <label for="horarioInicial">Horário Inicial:</label>
+        <input type="text" id="nicknameAlunos" name="nicknameAlunos" placeholder="Nickname dos alunos" required>
+        <input type="text" id="nicknameAprovados" name="nicknameAprovados"
+            placeholder="Nickname dos aprovados" required>
+        <input type="text" id="comentarios" name="comentarios" placeholder="Comentários" required>
         <input type="text" id="horarioInicial" name="horarioInicial" readonly>
-
-        <button type="button" onclick="enviarFormulario()">Enviar</button>
+        <button type="button" onclick="confirmarDados()">Próximo</button>
+        <div id="envio_hora_data"></div>
     </form>
 
+    <div class="confirmacao" style="margin-top: 20px;">
+        <h2>Confirme seus dados:</h2>
+        <div id="confirmacao_nicknameAlunos"></div>
+        <div id="confirmacao_nicknameAprovados"></div>
+        <div id="confirmacao_comentarios"></div>
+        <div id="confirmacao_horarioInicial"></div>
+        <button type="button" onclick="enviarFormulario()">Enviar</button>
+        <button type="button" onclick="voltarEdicao()">Voltar</button>
+    </div>
+
     <script>
-        // Função para formatar a data e hora no fuso horário de Brasília
         function formatarDataHoraBrasilia(data) {
             return new Intl.DateTimeFormat('pt-BR', {
                 timeZone: 'America/Sao_Paulo',
@@ -87,7 +171,6 @@
             }).format(data);
         }
 
-        // Função para preencher o campo de horário inicial com a data e hora atual
         function preencherHorarioInicial() {
             var horarioInicialInput = document.getElementById('horarioInicial');
             var dataAtual = new Date();
@@ -95,63 +178,84 @@
             horarioInicialInput.value = horarioAtualFormatado;
         }
 
-        // Preenche automaticamente o campo de horário inicial ao carregar a página
         window.onload = preencherHorarioInicial;
 
-        // Função para obter o horário inicial do input
-        function obterHorarioInicialInput() {
-            var horarioInicialInput = document.getElementById('horarioInicial').value;
-            return horarioInicialInput ? formatarDataHoraBrasilia(new Date(horarioInicialInput)) : null;
-        }
-
-        function enviarFormulario() {
-            // Obtém os valores dos inputs
+        function confirmarDados() {
             var nicknameAlunos = document.getElementById('nicknameAlunos').value;
             var nicknameAprovados = document.getElementById('nicknameAprovados').value;
             var comentarios = document.getElementById('comentarios').value;
+            var horarioInicial = document.getElementById('horarioInicial').value;
 
-            // Link fictício da API (substitua pelo link real da sua API)
+            document.getElementById('confirmacao_nicknameAlunos').innerText = 'Nickname dos Alunos: ' + nicknameAlunos;
+            document.getElementById('confirmacao_nicknameAprovados').innerText = 'Nickname dos Aprovados: ' +
+                nicknameAprovados;
+            document.getElementById('confirmacao_comentarios').innerText = 'Comentários: ' + comentarios;
+            document.getElementById('confirmacao_horarioInicial').innerText = 'Horário Inicial: ' + horarioInicial;
+
+            document.getElementById('myForm').style.display = 'none';
+            document.querySelector('.confirmacao').style.display = 'block';
+        }
+
+        function voltarEdicao() {
+            document.getElementById('myForm').style.display = 'block';
+            document.querySelector('.confirmacao').style.display = 'none';
+        }
+
+        function enviarFormulario() {
+            var nicknameAlunos = document.getElementById('nicknameAlunos').value;
+            var nicknameAprovados = document.getElementById('nicknameAprovados').value;
+            var comentarios = document.getElementById('comentarios').value;
+            var horarioInicial = document.getElementById('horarioInicial').value;
+
             var apiLink = 'https://api.sheetmonkey.io/form/2pwLfhU16SQfH116CT9YWS';
 
-            // Obtém o horário inicial do input
-            var horarioInicial = obterHorarioInicialInput();
+            if (!nicknameAlunos || !nicknameAprovados) {
+                alert('Por favor, preencha os campos obrigatórios.');
+                return;
+            }
 
-            // Obtém o horário final ao enviar o formulário
-            var horarioFinal = formatarDataHoraBrasilia(new Date());
+            var dadosFormulario = {
+                nicknameAlunos: nicknameAlunos,
+                nicknameAprovados: nicknameAprovados,
+                comentarios: comentarios,
+                horarioInicial: horarioInicial,
+                horarioFinal: formatarDataHoraBrasilia(new Date())
+            };
 
-            // Simula o envio para a API (substitua isso pela sua lógica real de API)
-            console.log("Enviando para a API...");
-            console.log("Nickname dos Alunos: " + nicknameAlunos);
-            console.log("Nickname dos Aprovados: " + nicknameAprovados);
-            console.log("Comentários: " + comentarios);
-            console.log("Horário Inicial: " + horarioInicial);
-            console.log("Horário Final: " + horarioFinal);
-
-            // Substitua este trecho pela lógica real de chamada à API
             fetch(apiLink, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                    // Adicione headers necessários à sua API, como tokens de autenticação, se aplicável
-                },
-                body: JSON.stringify({
-                    nicknameAlunos: nicknameAlunos,
-                    nicknameAprovados: nicknameAprovados,
-                    comentarios: comentarios,
-                    horarioInicial: horarioInicial,
-                    horarioFinal: horarioFinal
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dadosFormulario)
                 })
-            })
-            .then(response => response.json())
-            .then(data => console.log('Resposta da API:', data))
-            .catch(error => console.error('Erro ao chamar a API:', error));
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na chamada da API. Código de status: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Resposta da API:', data);
 
-            // Limpa os campos após o envio (opcional)
-            document.getElementById('nicknameAlunos').value = '';
-            document.getElementById('nicknameAprovados').value = '';
-            document.getElementById('comentarios').value = '';
+                    var horarioEnvio = formatarDataHoraBrasilia(new Date());
+
+                    var envioHoraData = 'Enviado em: ' + horarioEnvio;
+                    document.getElementById('envio_hora_data').innerText = envioHoraData;
+                    document.getElementById('envio_hora_data').style.display = 'block';
+
+                    document.getElementById('nicknameAlunos').value = '';
+                    document.getElementById('nicknameAprovados').value = '';
+                    document.getElementById('comentarios').value = '';
+                    document.getElementById('horarioInicial').value = '';
+                })
+                .catch(error => {
+                    console.error('Erro ao chamar a API:', error);
+                    alert('Erro ao enviar o formulário. Por favor, tente novamente.');
+                });
         }
     </script>
 
 </body>
+
 </html>
